@@ -6,15 +6,11 @@ import ContactsForm from './ContactsForm/ContactsForm';
 import ContactList from './ContactList/ContactList';
 import ContactFilter from './Filter/Filter';
 
+
 export default class App extends Component {
 
   state = {
-    contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ],
+    contacts: [ ],
     filter: '',
   }
 
@@ -25,8 +21,12 @@ export default class App extends Component {
       number: data.number
     };
     const {contacts} = this.state;
-
-  
+const chekContact = contacts.some(({name}) => name === data.name)
+if(chekContact){
+  return(
+    alert(`${data.name} is already in contacts.`)
+  )
+}
     this.setState(prevState => ({
       contacts: [newContact, ...prevState.contacts],
       
@@ -60,7 +60,7 @@ export default class App extends Component {
    const visibleContact = this.filterContacts();
 
     
-    return (<div>
+    return (<div style={{margin:"20px"}}>
        <h1>Phonebook</h1>
   <ContactsForm onSubmit={this.formSubmitHandler}/>
        <h2>Contacts</h2>
