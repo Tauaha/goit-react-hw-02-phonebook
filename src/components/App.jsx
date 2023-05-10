@@ -65,7 +65,9 @@ if(chekContact){
   <ContactsForm onSubmit={this.formSubmitHandler}/>
        <h2>Contacts</h2>
   <ContactFilter value={filter}  onChange={this.changeFilter}/>
-  <ContactList  visibleContact={visibleContact} onDelete={this.onDelete} />
+ {visibleContact.length > 0 && ( <ContactList 
+  visibleContact={visibleContact} 
+  onDelete={this.onDelete} />)}
     </div>
     
    )}}
